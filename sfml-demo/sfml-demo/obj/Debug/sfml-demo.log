@@ -1,0 +1,14 @@
+﻿Build started 13.2.2015 8:52:20.
+     1>Project "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" winmm.lib "sfml-audio-s-d.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.lib" /MACHINE:X86 "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\GameObject.obj"
+         "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Main.obj"
+         sfml-demo.vcxproj -> C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.exe
+     1>Done Building Project "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.93
