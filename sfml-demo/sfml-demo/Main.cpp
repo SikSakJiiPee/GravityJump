@@ -20,7 +20,7 @@ int main()
 	playerSpr.setTexture(playerTex);
 	playerSpr.setPosition(50, 10);
 
-
+	//TESTAUSTA --- Commit test
 
 	while (window.isOpen())
 	{
