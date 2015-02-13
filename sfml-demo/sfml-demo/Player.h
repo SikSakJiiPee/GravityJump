@@ -12,7 +12,10 @@ public:
 	Player(sf::Vector2f position, sf::Vector2f size, sf::Color color);
 	sf::RectangleShape rect;
 	void Update();
-	bool Collision(Player p);
+	bool collisionLeft(Player p);
+	bool collisionTop(Player p);
+	bool collisionBottom(Player p);
+	bool collisionRight(Player p);
 
 protected:
 	
