@@ -27,14 +27,14 @@ bool Player::collisionLeft(Player p)
 	{
 		return false;
 	}
-	else if (left < p.right && right > p.left + 20)
+	else // if (left < p.right && right > p.left + 20)
 	{
 		return true;
 	}
 }
 bool Player::collisionRight(Player p)
 {
-	if (right < p.left || left > p.right || top > p.bottom || bottom < p.top)
+	if (right < p.left  || left > p.right || top > p.bottom || bottom < p.top)
 	{
 		return false;
 	}

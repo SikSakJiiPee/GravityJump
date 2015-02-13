@@ -7,7 +7,7 @@ int main()
 	bool collidingTop = false;
 	bool collidingBottom = false;
 	bool collidingRight = false;
-	bool collidingLeft = false;
+	//bool collidingLeft = false;
 
 	sf::RenderWindow window(sf::VideoMode(1366, 768), "SFML demo");
 	window.setFramerateLimit(60);
@@ -27,7 +27,7 @@ int main()
 
 	//TESTAUSTA --- Commit test
 	Player p1(Player(sf::Vector2f(10, 10), sf::Vector2f(20, 20), sf::Color::Red)),
-		p2(Player(sf::Vector2f(100, 100), sf::Vector2f(20, 20), sf::Color::Blue));
+		p2(Player(sf::Vector2f(100, 100), sf::Vector2f(200, 200), sf::Color::Blue));
 
 	while (window.isOpen())
 	{
@@ -57,13 +57,13 @@ int main()
 		else
 			collidingBottom = false;
 
-		if (p1.collisionLeft(p2) == true)
+	/*	if (p1.collisionLeft(p2) == true)
 		{
 			std::cout << "LEFT COLLIDED" << std::endl;
 			collidingLeft = true;
 		}
 		else
-			collidingLeft = false;
+			collidingLeft = false;*/
 
 	if (p1.collisionRight(p2) == true)
 		{
@@ -91,7 +91,7 @@ int main()
 			playerSpr.move(4.5, 0);
 			p1.rect.move(4.5, 0);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)&& collidingLeft == false)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			playerSpr.move(-4.5, 0);
 			p1.rect.move(-4.5,0);
