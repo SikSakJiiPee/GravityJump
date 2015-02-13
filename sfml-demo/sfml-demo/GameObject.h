@@ -12,6 +12,7 @@ public:
 private:
 	float posX;
 	float posY;
+	
 };
 
 #endif
