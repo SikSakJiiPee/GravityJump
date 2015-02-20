@@ -6,6 +6,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
-
+#include <vector>
+#include <fstream>
+#include <cctype>
+#include <string>
+#include <sstream>
 
 #endif
