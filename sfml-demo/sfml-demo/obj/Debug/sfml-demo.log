@@ -1,7 +1,7 @@
-﻿Build started 27.2.2015 12:16:31.
+﻿Build started 27.2.2015 12:41:53.
      1>Project "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt testMain.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp Player.cpp testMain.cpp
          testMain.cpp
      1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(56): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(61): warning C4018: '<' : signed/unsigned mismatch
@@ -11,7 +11,15 @@
      1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(132): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(136): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(171): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(173): warning C4018: '<' : signed/unsigned mismatch
+         Player.cpp
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(19): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(22): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(95): warning C4715: 'Player::collisionRight' : not all control paths return a value
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(106): warning C4715: 'Player::collisionTop' : not all control paths return a value
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(117): warning C4715: 'Player::collisionBottom' : not all control paths return a value
+         Skipping... (no relevant changes detected)
+         Main.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" winmm.lib "sfml-audio-s-d.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.lib" /MACHINE:X86 "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Collision.obj"
          "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\GameObject.obj"
@@ -73,4 +81,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.99
+Time Elapsed 00:00:03.13

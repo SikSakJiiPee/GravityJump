@@ -47,6 +47,21 @@ void Player::Update(sf::Texture &playerTexture)
 	left = playerSprite.getPosition().x;
 	right = playerSprite.getPosition().x + playerImg.getSize().x;
 	top = playerSprite.getPosition().y;
+
+	// Tarkastetaan collisiota vain kulmista
+	sf::Vector2i topLeft(sf::Vector2i((int)left / 32, (int)top / 32));
+	sf::Vector2i topRight(sf::Vector2i((int)right / 32, (int)top / 32));
+	sf::Vector2i bottomLeft(sf::Vector2i((int)left / 32, (int)bottom / 32));
+	sf::Vector2i bottomRight(sf::Vector2i((int)right / 32, (int)top / 32));
+
+	
+	tilesP.clear();
+
+	tilesP.push_back(topLeft);
+	if (std::find(tilesP.begin(), tilesP.end(), topRight) == tilesP.end()) tilesP.push_back(topRight);
+	if (std::find(tilesP.begin(), tilesP.end(), bottomLeft) == tilesP.end()) tilesP.push_back(bottomLeft);
+	if (std::find(tilesP.begin(), tilesP.end(), bottomRight) == tilesP.end()) tilesP.push_back(bottomRight);
+	//----
 }
 void Player::Update2()
 {

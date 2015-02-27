@@ -13,6 +13,7 @@ public:
 	sf::RectangleShape rect;
 	sf::Sprite playerSprite;
 	sf::Image playerImg;
+	std::vector<sf::Vector2i> tilesP;
 	void Update(sf::Texture &playerTexture);
 	void Update2();
 	bool collisionLeft(Player p);

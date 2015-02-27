@@ -17,6 +17,8 @@ int main()
 
 	sf::FloatRect boundingBox = p1.playerSprite.getGlobalBounds();
 
+#pragma region TileMap
+
 	//Ladataan kenttä ------------------------
 	std::vector<std::vector<sf::Vector2i>> map;
 	std::vector<sf::Vector2i> tempMap;
@@ -79,7 +81,9 @@ int main()
 
 		}
 	// KENTÄN LATAUS LOPPUU
+#pragma endregion TileMap
 
+#pragma region CollisionMap
 	// LADATAAN COLLISION MAP 
 		std::vector<std::vector<int>> colMap;
 		std::vector<int> tempMap2;
@@ -110,7 +114,8 @@ int main()
 			}
 
 		}
-		// LADATAAN COLLISION MAP LOPPU
+#pragma endregion CollisionMap
+
 			while (window.isOpen())
 			{
 				sf::Event event;
@@ -143,7 +148,7 @@ int main()
 			
 				window.display();
 
-		
+#pragma region Liikkuminen
 						//LIIKKUMINEN
 				
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -166,33 +171,20 @@ int main()
 							p1.playerSprite.move(0, 4.5);
 						}	
 						//LIIKKUMINEN LOPPU
+#pragma endregion Liikkuminen
+
 						p1.Update(playerTex);
 
-						for (int i = 0; i < colMap.size(); i++)
+						//Collision check
+						for (int i = 0; i < p1.tilesP.size(); i++)
 						{
-							for (int j = 0; j < colMap[i].size(); j++)
+							if (colMap[p1.tilesP[i].y][p1.tilesP[i].x] == 1)
 							{
-
-								if (colMap[i][j] == 1)
-								{
-									int bottom, top, left, right;
-									bottom = i * 32 + 32;
-									top = i * 32;
-									right = j * 32 + 32;
-									left = j * 32;
-
-									if (p1.right < left || p1.left > right || p1.top > bottom || p1.bottom < top)
-									{
-										std::cout << "Not colliding";
-									}
-									else
-									{
-										std::cout << "Colliding";
-										break;
-									}
-								}
+								std::cout << "collision";
+								break;
 							}
 						}
+						
 
 			}
 
