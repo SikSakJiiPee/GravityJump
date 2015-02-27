@@ -12,7 +12,8 @@ public:
 	Player(sf::Vector2f position, sf::Vector2f size, sf::Color color);
 	sf::RectangleShape rect;
 	sf::Sprite playerSprite;
-	void Update();
+	sf::Image playerImg;
+	void Update(sf::Texture &playerTexture);
 	void Update2();
 	bool collisionLeft(Player p);
 	bool collisionTop(Player p);
@@ -20,10 +21,10 @@ public:
 	bool collisionRight(Player p);
 
 	Player(sf::Vector2f position, sf::Texture &playerTexture);
-
+	float bottom, left, right, top;
 protected:
 	
-	float bottom, left, right, top;
+	
 };
 
 #endif

@@ -1,6 +1,9 @@
 #include "Player.h"
+#include "Main.h"
 
 std::vector<std::vector<bool>> mask;
+
+
 
 Player::Player(sf::Vector2f position, sf::Vector2f size, sf::Color color)
 {
@@ -11,7 +14,6 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, sf::Color color)
 Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
 {
 
-	sf::Image playerImg;
 	playerImg = playerTexture.copyToImage();
 	
 	for (int i = 0; i < playerImg.getSize().x; i++)
@@ -37,12 +39,14 @@ Player::~Player()
 {
 }
 
-void Player::Update()
+void Player::Update(sf::Texture &playerTexture)
 {
-	bottom = rect.getPosition().y + rect.getSize().y;
-	left = rect.getPosition().x;
-	right = rect.getPosition().x + rect.getSize().x;
-	top = rect.getPosition().y;
+	playerImg = playerTexture.copyToImage();
+
+	bottom = playerSprite.getPosition().y + playerImg.getSize().y;
+	left = playerSprite.getPosition().x;
+	right = playerSprite.getPosition().x + playerImg.getSize().x;
+	top = playerSprite.getPosition().y;
 }
 void Player::Update2()
 {
