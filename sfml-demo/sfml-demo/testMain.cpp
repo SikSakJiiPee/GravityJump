@@ -11,11 +11,23 @@ int main()
 
 
 	sf::Texture playerTex;
-	playerTex.loadFromFile("Texture/player1.png");
+	playerTex.loadFromFile("Texture/testi.png");
 
-	Player p1(Player(sf::Vector2f(6, -10), playerTex));
+	Player p1(Player(sf::Vector2f(70, 40), playerTex));
 
-	sf::FloatRect boundingBox = p1.playerSprite.getGlobalBounds();
+	bool collidingWall = false;
+
+	bool movingLeft = false;
+	bool movingRight = false;
+	bool movingUp = false;
+	bool movingDown = false;
+
+	bool collidingRight = false;
+	bool collidingLeft = false;
+	bool collidingDown = false;
+	bool collidingUp = false;
+
+
 
 #pragma region TileMap
 
@@ -34,7 +46,7 @@ int main()
 
 		if (openfile.is_open())
 		{
-			std::cout << "File open";
+			std::cout << "TileMap open";
 			std::string tileLocation;
 			openfile >> tileLocation;
 			tileTexture.loadFromFile(tileLocation);
@@ -151,37 +163,146 @@ int main()
 #pragma region Liikkuminen
 						//LIIKKUMINEN
 				
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-						{
-							p1.playerSprite.move(4.5, 0);
-						
-						}
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-						{
-							p1.playerSprite.move(-4.5, 0);
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
+				{
 					
-						}
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-						{
-							p1.playerSprite.move(0, -4.5);
-						
-						}
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-						{
-							p1.playerSprite.move(0, 4.5);
-						}	
+						p1.playerSprite.move(4, 0);
+						movingRight = true;
+					if (collidingWall == false)
+					{
+							collidingRight = false;
+							collidingUp = false;
+							collidingDown = false;
+							collidingLeft = false;
+					}
+
+					collidingLeft = false;
+				}
+				else
+				movingRight = false;
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)&& collidingLeft == false) // Vasemmalle liikkuminen
+				{
+							p1.playerSprite.move(-4, 0);
+							movingLeft = true;
+
+							if (collidingWall == false)
+							{
+								collidingRight = false;
+								collidingUp = false;
+								collidingDown = false;
+								collidingLeft = false;
+							}
+
+							collidingRight = false;
+				}
+				else
+				movingLeft = false;
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)&& collidingUp == false) // Ylöspäin liikkuminen
+				{
+					p1.playerSprite.move(0, -4);
+					movingUp = true;
+					if (collidingWall == false)
+					{
+						collidingRight = false;
+						collidingUp = false;
+						collidingDown = false;
+						collidingLeft = false;
+					}
+
+					collidingDown = false;
+				}
+				else
+				movingUp = false;
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)&& collidingDown == false) // Alaspäin liikkuminen
+				{
+					p1.playerSprite.move(0,4);
+					movingDown = true;
+
+					if (collidingWall == false)
+					{
+						collidingRight = false;
+						collidingUp = false;
+						collidingDown = false;
+						collidingLeft = false;
+					}
+					collidingUp = false;
+				}	
+				else
+				movingDown = false;
 						//LIIKKUMINEN LOPPU
+
+				if (movingRight == true && collidingWall == true && collidingLeft == false)
+				{
+					p1.playerSprite.move(-4, 0);
+					p1.playerSprite.setPosition(p1.playerSprite.getPosition().x - 5, p1.playerSprite.getPosition().y);
+					collidingRight = true;
+					collidingLeft = false;
+					//collidingWall = false;
+				}
+				
+
+				if (movingLeft == true && collidingWall == true && collidingRight == false)
+				{
+					p1.playerSprite.move(4, 0);
+					p1.playerSprite.setPosition(p1.playerSprite.getPosition().x + 5, p1.playerSprite.getPosition().y);
+					collidingLeft = true;
+					collidingRight = false;
+					//collidingWall = false;
+				}
+			
+
+				if (movingUp == true && collidingWall == true && collidingDown == false)
+				{
+					p1.playerSprite.move(0, 4);
+					p1.playerSprite.setPosition(p1.playerSprite.getPosition().x, p1.playerSprite.getPosition().y + 5);
+					collidingUp = true;
+					collidingDown = false;
+				}
+			
+
+				if (movingDown == true && collidingWall == true && collidingUp == false)
+				{
+					p1.playerSprite.move(0, -4);
+					p1.playerSprite.setPosition(p1.playerSprite.getPosition().x, p1.playerSprite.getPosition().y - 5);
+					collidingDown = true;
+					collidingUp = false;
+				}
+				
+				if (collidingDown == true)
+				{
+					collidingUp = false;
+				}
+
+				if (collidingLeft == true)
+				{
+					collidingRight = false;
+				}
+
+			
+				
 #pragma endregion Liikkuminen
-
+				
 						p1.Update(playerTex);
-
+					
 						//Collision check
 						for (int i = 0; i < p1.tilesP.size(); i++)
 						{
 							if (colMap[p1.tilesP[i].y][p1.tilesP[i].x] == 1)
 							{
-								std::cout << "collision";
+								collidingWall = true;
+								//std::cout << "ITS A WALL ";
 								break;
+							}
+							else if (colMap[p1.tilesP[i].y][p1.tilesP[i].x] == 2)
+							{
+								std::cout << "ITS A TARP!";
+								break;
+							}
+							else
+							{
+								collidingWall = false;
 							}
 						}
 						

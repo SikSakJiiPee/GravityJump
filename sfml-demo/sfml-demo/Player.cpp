@@ -3,17 +3,8 @@
 
 std::vector<std::vector<bool>> mask;
 
-
-
-Player::Player(sf::Vector2f position, sf::Vector2f size, sf::Color color)
-{
-	rect.setPosition(position);
-	rect.setSize(size);
-	rect.setFillColor(color);
-}
 Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
 {
-
 	playerImg = playerTexture.copyToImage();
 	
 	for (int i = 0; i < playerImg.getSize().x; i++)
@@ -30,9 +21,6 @@ Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
 	}
 	playerSprite.setPosition(position);
 	playerSprite.setTexture(playerTexture);
-
-	
-
 }
 
 Player::~Player()
@@ -52,15 +40,28 @@ void Player::Update(sf::Texture &playerTexture)
 	sf::Vector2i topLeft(sf::Vector2i((int)left / 32, (int)top / 32));
 	sf::Vector2i topRight(sf::Vector2i((int)right / 32, (int)top / 32));
 	sf::Vector2i bottomLeft(sf::Vector2i((int)left / 32, (int)bottom / 32));
-	sf::Vector2i bottomRight(sf::Vector2i((int)right / 32, (int)top / 32));
+	sf::Vector2i bottomRight(sf::Vector2i((int)right / 32, (int)bottom / 32));
 
 	
 	tilesP.clear();
 
 	tilesP.push_back(topLeft);
-	if (std::find(tilesP.begin(), tilesP.end(), topRight) == tilesP.end()) tilesP.push_back(topRight);
-	if (std::find(tilesP.begin(), tilesP.end(), bottomLeft) == tilesP.end()) tilesP.push_back(bottomLeft);
-	if (std::find(tilesP.begin(), tilesP.end(), bottomRight) == tilesP.end()) tilesP.push_back(bottomRight);
+
+	if (std::find(tilesP.begin(), tilesP.end(), topRight) == tilesP.end())
+	{
+		tilesP.push_back(topRight);
+	}
+	
+	if (std::find(tilesP.begin(), tilesP.end(), bottomLeft) == tilesP.end())
+	{
+		tilesP.push_back(bottomLeft);
+	}
+
+	if (std::find(tilesP.begin(), tilesP.end(), bottomRight) == tilesP.end())
+	{
+		tilesP.push_back(bottomRight);
+	}
+	
 	//----
 }
 void Player::Update2()
@@ -89,7 +90,7 @@ bool Player::collisionRight(Player p)
 	{
 		return false;
 	}
-	else if (right > p.left && left < p.right - 20)
+	else if (right > p.left && left < p.right - 16)
 	{
 		return true;
 	}
@@ -100,7 +101,7 @@ bool Player::collisionTop(Player p)
 	{
 		return false;
 	}
-	else if (top < p.bottom && bottom > p.top + 20)
+	else if (top < p.bottom && bottom > p.top + 16)
 	{
 		return true;
 	}
@@ -111,7 +112,7 @@ bool Player::collisionBottom(Player p)
 	{
 		return false;
 	}
-	else if (bottom > p.top && top < p.bottom - 20)
+	else if (bottom > p.top && top < p.bottom - 16)
 	{
 		return true;
 	}

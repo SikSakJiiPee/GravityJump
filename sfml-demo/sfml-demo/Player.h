@@ -9,7 +9,6 @@ public:
 	Player();
 	~Player();
 
-	Player(sf::Vector2f position, sf::Vector2f size, sf::Color color);
 	sf::RectangleShape rect;
 	sf::Sprite playerSprite;
 	sf::Image playerImg;
