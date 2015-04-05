@@ -5,13 +5,21 @@
 
 int main()
 {
+	sf::Vector2i screenDimensions(640, 480);
 
-	sf::RenderWindow window(sf::VideoMode(640, 480, 32), "GravityJump 0.02");
+	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "GravityJump 0.02");
 	window.setFramerateLimit(60);
 
 
 	sf::Texture playerTex;
 	playerTex.loadFromFile("Texture/testi.png");
+
+	sf::Texture backgroundTex;
+	sf::Sprite backgroundImg;
+	backgroundTex.loadFromFile("Texture/backround1.jpg");
+
+	backgroundImg.setTexture(backgroundTex);
+	backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
 
 	Player p1(Player(sf::Vector2f(70, 40), playerTex));
 
@@ -28,6 +36,16 @@ int main()
 	bool collidingUp = false;
 
 
+	sf::View view1, view2;
+
+	view1.setViewport(sf::FloatRect(0, 0, 0.5f, 1.0f));
+	view1.setSize(screenDimensions.x / 2, screenDimensions.y);
+
+	view2.setViewport(sf::FloatRect(0.5f, 0, 0.5f, 1.0f));
+	view2.setSize(screenDimensions.x / 2, screenDimensions.y);
+
+	sf::Vector2f position(screenDimensions.x / 2, screenDimensions.y / 2);
+	sf::Vector2f position2(position);
 
 #pragma region TileMap
 
@@ -130,6 +148,7 @@ int main()
 
 			while (window.isOpen())
 			{
+				
 				sf::Event event;
 				while (window.pollEvent(event))
 				{
@@ -142,7 +161,9 @@ int main()
 					
 				}
 
-				window.clear(sf::Color(0, 240,255));
+				window.setView(view1);
+				
+				window.draw(backgroundImg);
 
 				for (int c = 0; c < map.size(); c++)
 				{
@@ -156,9 +177,35 @@ int main()
 						}
 					}
 				}
+				if (p1.playerSprite.getPosition().x + 10 >= view1.getSize().x / 2)
+					position.x = p1.playerSprite.getPosition().x + 10;
+				else
+					position.x = view1.getSize().x / 2;
+
+				view1.setCenter(position);
+				view2.setCenter(position2);
+
+				
 				window.draw(p1.playerSprite);
-			
+				
+				window.setView(view2);
+				window.draw(backgroundImg);
+				window.draw(p1.playerSprite);
+				for (int c = 0; c < map.size(); c++)
+				{
+					for (int g = 0; g < map[c].size(); g++)
+					{
+						if (map[c][g].x != -1 && map[c][g].y != -1)
+						{
+							tiles.setPosition(g * 32, c * 32);
+							tiles.setTextureRect(sf::IntRect(map[c][g].x * 32, map[c][g].y * 32, 32, 32));
+							window.draw(tiles);
+						}
+					}
+				}
+
 				window.display();
+				window.clear();
 
 #pragma region Liikkuminen
 						//LIIKKUMINEN
@@ -168,6 +215,7 @@ int main()
 					
 						p1.playerSprite.move(4, 0);
 						movingRight = true;
+
 					if (collidingWall == false)
 					{
 							collidingRight = false;
