@@ -182,6 +182,11 @@ int main()
 				else
 					position.x = view1.getSize().x / 2;
 
+				if (p1.playerSprite.getPosition().y + 10 >= view1.getSize().y / 2)
+					position.y = p1.playerSprite.getPosition().y + 10;
+				else
+					position.y = view1.getSize().y / 2;
+
 				view1.setCenter(position);
 				view2.setCenter(position2);
 
