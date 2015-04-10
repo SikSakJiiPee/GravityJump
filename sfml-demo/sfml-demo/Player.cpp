@@ -3,6 +3,8 @@
 
 std::vector<std::vector<bool>> mask;
 
+
+
 Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
 {
 	playerImg = playerTexture.copyToImage();
@@ -27,7 +29,7 @@ Player::~Player()
 {
 }
 
-void Player::Update(sf::Texture &playerTexture)
+void Player::Update(sf::Texture &playerTexture, Tile &tile)
 {
 	playerImg = playerTexture.copyToImage();
 
@@ -42,7 +44,8 @@ void Player::Update(sf::Texture &playerTexture)
 	sf::Vector2i bottomLeft(sf::Vector2i((int)left / 32, (int)bottom / 32));
 	sf::Vector2i bottomRight(sf::Vector2i((int)right / 32, (int)bottom / 32));
 
-	
+	playerPos = playerSprite.getPosition();
+
 	tilesP.clear();
 
 	tilesP.push_back(topLeft);
@@ -51,7 +54,7 @@ void Player::Update(sf::Texture &playerTexture)
 	{
 		tilesP.push_back(topRight);
 	}
-	
+
 	if (std::find(tilesP.begin(), tilesP.end(), bottomLeft) == tilesP.end())
 	{
 		tilesP.push_back(bottomLeft);
@@ -61,17 +64,137 @@ void Player::Update(sf::Texture &playerTexture)
 	{
 		tilesP.push_back(bottomRight);
 	}
-	
-	//----
-}
-void Player::Update2()
-{
 
-	//bottom = playerSprite.getPosition().y + player.getSize().y;
-	left = playerSprite.getPosition().x;
-	//right = playerSprite.getPosition().x + playerSprite.getSize().x;
-	top = rect.getPosition().y;
+	//----
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
+	{
+		playerSprite.move(4, 0);
+		movingRight = true;
+		collidingLeft = false;
+	}
+	else
+		movingRight = false;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && collidingLeft == false) // Vasemmalle liikkuminen
+	{
+		playerSprite.move(-4, 0);
+		movingLeft = true;
+		collidingRight = false;
+	}
+	else
+		movingLeft = false;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && collidingUp == false) // Ylöspäin liikkuminen
+	{
+		playerSprite.move(0, -4);
+		movingUp = true;
+		collidingDown = false;
+	}
+	else
+		movingUp = false;
+
+	if (collidingUp == true)
+	{
+		std::cout << "Colliding up";
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
+	{
+		playerSprite.move(0, 4);
+		movingDown = true;
+		collidingUp = false;
+
+	}
+	else
+		movingDown = false;
+	//LIIKKUMINEN LOPPU
+
+	if (collidingRight == true)
+	{
+		//playerSprite.move(-4, 0);
+
+		playerSprite.setPosition(playerSprite.getPosition().x - 4, playerSprite.getPosition().y);
+		collidingLeft = false;
+		//collidingWall = false;
+	}
+
+
+	if (collidingLeft == true)
+	{
+		//playerSprite.move(4, 0);
+		playerSprite.setPosition(playerSprite.getPosition().x + 4, playerSprite.getPosition().y);
+		collidingRight = false;
+		//collidingWall = false;
+	}
+
+
+	if (collidingUp == true)
+	{
+		//playerSprite.move(0, 4);
+		playerSprite.setPosition(playerSprite.getPosition().x, playerSprite.getPosition().y + 4);
+		collidingDown = false;
+	}
+
+
+	if (collidingDown == true)
+	{
+		//playerSprite.move(0, -4);
+		playerSprite.setPosition(playerSprite.getPosition().x, playerSprite.getPosition().y - 4);
+		collidingUp = false;
+	}
+
+
+
+	for (int i = 0; i < tilesP.size(); i++)
+	{
+		if (tile.colMap[tilesP[i].y][tilesP[i].x] == unpassable)
+		{
+			if (movingUp == true)
+			{
+				collidingUp = true;
+
+
+				tile.tilePos = tile.tiles.getPosition();
+
+
+
+				//Etsitään mihin tileihin osutaan
+				//Käydään läpi tilet
+				//Tehdään tarvittava korjaus
+
+			}
+			else if (movingDown == true)
+			{
+				collidingDown = true;
+			}
+			else if (movingLeft == true)
+			{
+				collidingLeft = true;
+			}
+			else if (movingRight == true)
+			{
+				collidingRight = true;
+			}
+			//std::cout << "ITS A WALL ";
+			break;
+
+		}
+		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == trap)
+		{
+			std::cout << "ITS A TARP!";
+			break;
+		}
+		else
+		{
+			collidingUp = false;
+			collidingDown = false;
+			collidingLeft = false;
+			collidingRight = false;
+		}
+	}
 }
+
+
 
 bool Player::collisionLeft(Player p)
 {
