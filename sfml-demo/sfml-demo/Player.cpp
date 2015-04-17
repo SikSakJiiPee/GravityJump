@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Main.h"
+#include "Item.h"
 
 std::vector<std::vector<bool>> mask;
 
@@ -31,6 +32,8 @@ Player::~Player()
 
 void Player::Update(sf::Texture &playerTexture, Tile &tile)
 {
+	Item items;
+
 	playerImg = playerTexture.copyToImage();
 
 	bottom = playerSprite.getPosition().y + playerImg.getSize().y;
@@ -89,13 +92,14 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		playerSprite.move(0, -4);
 		movingUp = true;
 		collidingDown = false;
+
 	}
 	else
 		movingUp = false;
 
 	if (collidingUp == true)
 	{
-		std::cout << "Colliding up";
+		//std::cout << "Colliding up";
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
@@ -145,16 +149,45 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 
 
 
-	for (int i = 0; i < tilesP.size(); i++)
+	for (int i = 0; i < tilesP.size(); i++) //Käydään pelaajan kulmat läpi
 	{
-		if (tile.colMap[tilesP[i].y][tilesP[i].x] == unpassable)
+		if (tile.colMap[tilesP[i].y][tilesP[i].x] == unpassable) //Jos pelaajan kulma osuu seinään
 		{
 			if (movingUp == true)
 			{
 				collidingUp = true;
 
+				for (int j = 0; j < tile.colMap.size(); j++) //Etsitään collision mapista osutun tilen x-paikka (J) - Ei varmaan oikea tapa tällä hetkellä
+				{
+					for (int i = 0; i < tile.colMap[j].size(); i++) //Etsitään collision mapista osutun tilen y-paikka (i) - Ei varmaan oikea tapa tällä hetkellä
+					{
+						// JOS - joku ehto juttu juttelson
+						if (tile.colMap[tilesP[i].y][tilesP[i].x] != -1 && tile.colMap[tilesP[i].y][tilesP[i].x] != -1)
+						{
+							//kerrotaan collision mapin x-y paikat 32:lla jotta saadaan pikseleinä koordinaatit. Ja tehdään korjaus jotta saadaan tilen keskipiste +16 -16 (x / y) riippuen mistä suunnasta osutaan. 
+							std::cout << tilesP[i].x;
 
-				tile.tilePos = tile.tiles.getPosition();
+							std::cout << tilesP[i].y;//Näillä laitetaan toimimaan !
+
+							//std::cout << i;
+							//Haetaan pelaajan keskipiste - katsotaan etäisyys tilen keskipisteeseen jos etäisyys vähemmän kuin 32pikseliä - siirretään pelaajaa menosuunnan vastaiseen suuntaan (32 - etäisyys) verran.
+							j * 32 + 16;
+							i * 32 + 16;
+
+							
+							
+
+							tile.tilePos.x = j;
+							tile.tilePos.y = i;
+
+							break;
+						}
+					}
+				}
+
+				
+				//std::cout << tile.tilePos.x << std::endl;
+				//std::cout << tile.tilePos.y;
 
 
 
@@ -183,6 +216,18 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		{
 			std::cout << "ITS A TARP!";
 			break;
+		}
+		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == item)
+		{
+			items.randomItem();
+
+
+			tile.colMap[tilesP[i].y][tilesP[i].x] = passable;
+			std::cout << "Itam";
+
+			
+
+			 // poistetaan itemi paikalta.
 		}
 		else
 		{

@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Main.h"
+
 #include "Tile.h"
 
 class Player

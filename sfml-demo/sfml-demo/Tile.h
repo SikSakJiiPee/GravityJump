@@ -1,7 +1,6 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include "Player.h"
 #include "Main.h"
 
 enum TileCollision
@@ -29,7 +28,7 @@ public:
 	std::vector<std::vector<int>> colMap;
 	std::vector<int> tempMap2;
 
-	sf::Vector2f tilePos;
+	sf::Vector2i tilePos;
 
 	void loadTileMap();
 	void loadColMap();

@@ -1,7 +1,5 @@
-#include "Main.h"
-#include "Player.h"
-#include "Tile.h"
 
+#include "Player.h"
 
 int main()
 {
@@ -91,6 +89,11 @@ int main()
 					position.y = view1.getSize().y / 2;
 				}
 				//------Scrolling
+
+				if (p1.playerSprite.getPosition().y + 10 >= view1.getSize().y / 2)
+					position.y = p1.playerSprite.getPosition().y + 10;
+				else
+					position.y = view1.getSize().y / 2;
 
 				view1.setCenter(position);
 				view2.setCenter(position2);
