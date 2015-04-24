@@ -8,8 +8,10 @@ class Player
 {
 public:
 	Player();
-	Player(sf::Vector2f position, sf::Texture &playerTexture);
+	Player(int playerID, sf::Vector2f position, sf::Texture &playerTexture);
 	~Player();
+
+	int playerIndex;
 
 	sf::Sprite playerSprite;
 	sf::Image playerImg;

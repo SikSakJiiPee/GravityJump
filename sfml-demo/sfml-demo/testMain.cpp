@@ -16,6 +16,9 @@ int main()
 	sf::Texture playerTex;
 	playerTex.loadFromFile("Texture/testi.png");
 
+	sf::Texture player2Tex;
+	player2Tex.loadFromFile("Texture/testi2.png");
+
 	sf::Texture backgroundTex;
 	sf::Sprite backgroundImg;
 	backgroundTex.loadFromFile("Texture/backround1.jpg");
@@ -23,7 +26,8 @@ int main()
 	backgroundImg.setTexture(backgroundTex);
 	backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
 
-	Player p1(Player(sf::Vector2f(70, 40), playerTex));
+	Player p1(Player(1, sf::Vector2f(70, 40), playerTex));
+	Player p2(Player(2, sf::Vector2f(140, 80), playerTex));
 
 	// Creating views for split screen
 	sf::View view1, view2;
@@ -71,22 +75,40 @@ int main()
 				}
 
 				//Scrolling
-				if (p1.playerSprite.getPosition().x + 10 >= view1.getSize().x / 2)
+				if (p2.playerSprite.getPosition().x + 10 >= view2.getSize().x / 2)
 				{
-						position.x = p1.playerSprite.getPosition().x + 10;
+						position.x = p2.playerSprite.getPosition().x + 10;
 				}
 				else
 				{
-					position.x = view1.getSize().x / 2;
+					position.x = view2.getSize().x / 2;
 				}
 
-				if (p1.playerSprite.getPosition().y + 10 >= view1.getSize().y / 2)
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
 				{
-					position.y = p1.playerSprite.getPosition().y + 10;
+					position.y = p2.playerSprite.getPosition().y + 10;
 				}
 				else
 				{
-					position.y = view1.getSize().y / 2;
+					position.y = view2.getSize().y / 2;
+				}
+
+				if (p2.playerSprite.getPosition().x + 10 >= view2.getSize().x / 2)
+				{
+					position.x = p2.playerSprite.getPosition().x + 10;
+				}
+				else
+				{
+					position.x = view2.getSize().x / 2;
+				}
+
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
+				{
+					position.y = p2.playerSprite.getPosition().y + 10;
+				}
+				else
+				{
+					position.y = view2.getSize().y / 2;
 				}
 				//------Scrolling
 
@@ -95,14 +117,21 @@ int main()
 				else
 					position.y = view1.getSize().y / 2;
 
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
+					position.y = p2.playerSprite.getPosition().y + 10;
+				else
+					position.y = view2.getSize().y / 2;
+
 				view1.setCenter(position);
 				view2.setCenter(position2);
 
 				
 				window.draw(p1.playerSprite);
+				window.draw(p2.playerSprite);
 				
 				window.setView(view2);
 				window.draw(backgroundImg);
+				window.draw(p2.playerSprite);
 				window.draw(p1.playerSprite);
 
 				for (int c = 0; c < tile.map.size(); c++)
@@ -123,6 +152,7 @@ int main()
 				window.clear();
 
 				p1.Update(playerTex, tile);
+				p2.Update(playerTex, tile);
 
 
 #pragma region Liikkuminen

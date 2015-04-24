@@ -6,7 +6,7 @@ std::vector<std::vector<bool>> mask;
 
 
 
-Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
+Player::Player(int playerID, sf::Vector2f position, sf::Texture &playerTexture)
 {
 	playerImg = playerTexture.copyToImage();
 	
@@ -24,6 +24,7 @@ Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
 	}
 	playerSprite.setPosition(position);
 	playerSprite.setTexture(playerTexture);
+	playerIndex = playerID;
 }
 
 Player::~Player()
@@ -69,6 +70,8 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 	}
 
 	//----
+	//LIIKKUMINEN
+	//Näppäimistö
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
 	{
 		playerSprite.move(4, 0);
@@ -111,6 +114,121 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 	}
 	else
 		movingDown = false;
+
+	//Ohjain
+	if (sf::Joystick::isConnected(0))
+	{
+		unsigned int buttonCount = sf::Joystick::getButtonCount(0);
+		//std::cout << buttonCount << std::endl;
+		// Xinput: 10 (Xbox) , Dinput: 12 (Wii U)
+
+		//Näppäinten tunnistus
+		if (sf::Joystick::isButtonPressed(0, 0))
+		{
+			std::cout << "P1 painike Y painettu" << std::endl;
+			//player1Spr.setRotation(90);
+			std::cout << "P1 Rotate left" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 1))
+		{
+			std::cout << "P1 painike B painettu" << std::endl;
+			//player1Spr.setRotation(0);
+			std::cout << "P1 Rotate down" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 2))
+		{
+			std::cout << "P1 painike A painettu" << std::endl;
+			//player1Spr.setRotation(270);
+			std::cout << "P1 Rotate right" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 3))
+		{
+			std::cout << "P1 painike X painettu" << std::endl;
+			//player1Spr.setRotation(180);
+			std::cout << "P1 Rotate up" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 4))
+		{
+			std::cout << "P1 painike L painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 5))
+		{
+			std::cout << "P1 painike R painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 6))
+		{
+			std::cout << "P1 painike ZL painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 7))
+		{
+			std::cout << "P1 painike LR painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 8))
+		{
+			std::cout << "P1 painike SELECT painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 9))
+		{
+			std::cout << "P1 painike START painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 10))
+		{
+			std::cout << "P1 painike L STCK painettu" << std::endl;
+		}
+		if (sf::Joystick::isButtonPressed(0, 11))
+		{
+			std::cout << "P1 painike R STICK painettu" << std::endl;
+		}
+	}
+	if (sf::Joystick::isConnected(0))
+	{
+		float axisX = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+		if (axisX > 50 && collidingRight == false) // Oikealle liikkuminen
+		{
+			playerSprite.move(4, 0);
+			movingRight = true;
+			collidingLeft = false;
+		}
+		else
+			movingRight = false;
+
+		if (axisX < -50 && collidingLeft == false) // Vasemmalle liikkuminen
+		{
+			playerSprite.move(-4, 0);
+			movingLeft = true;
+			collidingRight = false;
+		}
+		else
+			movingLeft = false;
+
+		float axisY = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+		if (axisY < -50 && collidingUp == false) // Ylöspäin liikkuminen
+		{
+			playerSprite.move(0, -4);
+			movingUp = true;
+			collidingDown = false;
+
+		}
+		else
+			movingUp = false;
+
+		if (collidingUp == true)
+		{
+			//std::cout << "Colliding up";
+		}
+
+		if (axisY > 50 && collidingDown == false) // Alaspäin liikkuminen
+		{
+			playerSprite.move(0, 4);
+			movingDown = true;
+			collidingUp = false;
+
+		}
+		else
+			movingDown = false;
+
+	}
+
 	//LIIKKUMINEN LOPPU
 
 	if (collidingRight == true)
