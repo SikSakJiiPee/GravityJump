@@ -24,6 +24,7 @@ int main()
 	backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
 
 	Player p1(Player(sf::Vector2f(70, 40), playerTex));
+	Player p2(Player(sf::Vector2f(180, 40), playerTex));
 
 	// Creating views for split screen
 	sf::View view1, view2;
@@ -96,13 +97,42 @@ int main()
 					position.y = view1.getSize().y / 2;
 
 				view1.setCenter(position);
-				view2.setCenter(position2);
+				
 
 				
 				window.draw(p1.playerSprite);
+				window.draw(p2.playerSprite);
 				
 				window.setView(view2);
 				window.draw(backgroundImg);
+
+				//Scrolling
+				if (p2.playerSprite.getPosition().x + 10 >= view2.getSize().x / 2)
+				{
+					position2.x = p2.playerSprite.getPosition().x + 10;
+				}
+				else
+				{
+					position.x = view2.getSize().x / 2;
+				}
+
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
+				{
+					position2.y = p2.playerSprite.getPosition().y + 10;
+				}
+				else
+				{
+					position2.y = view2.getSize().y / 2;
+				}
+				//------Scrolling
+
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
+					position2.y = p2.playerSprite.getPosition().y + 10;
+				else
+					position2.y = view2.getSize().y / 2;
+
+				view2.setCenter(position2);
+				window.draw(p2.playerSprite);
 				window.draw(p1.playerSprite);
 
 				for (int c = 0; c < tile.map.size(); c++)
@@ -123,6 +153,7 @@ int main()
 				window.clear();
 
 				p1.Update(playerTex, tile);
+				p2.Update(playerTex, tile);
 
 
 #pragma region Liikkuminen

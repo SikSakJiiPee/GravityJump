@@ -1,18 +1,17 @@
-﻿Build started 17.4.2015 12:57:11.
+﻿Build started 24.4.2015 12:38:14.
      1>Project "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Player.cpp
-         Player.cpp
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(13): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(16): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(152): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(160): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(162): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(174): warning C4552: '+' : operator has no effect; expected operator with side-effect
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(175): warning C4552: '+' : operator has no effect; expected operator with side-effect
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(265): warning C4715: 'Player::collisionRight' : not all control paths return a value
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(276): warning C4715: 'Player::collisionTop' : not all control paths return a value
-     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(287): warning C4715: 'Player::collisionBottom' : not all control paths return a value
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt testMain.cpp
+         testMain.cpp
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(36): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(38): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(63): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(67): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(138): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(140): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(144): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" winmm.lib "sfml-audio-s-d.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.lib" /MACHINE:X86 "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Collision.obj"
          "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\GameObject.obj"
@@ -26,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.09
+Time Elapsed 00:00:00.80
