@@ -1,0 +1,13 @@
+Map1
+
+-grafiikat
+x, x: läpinäkyvä
+0,1: 0 on x ja 1 on y
+-kokeilemalla selviää
+
+Map1col
+-löytyy koodista enumeina
+0 läpi
+1 seinä
+3 item
+2 trap
