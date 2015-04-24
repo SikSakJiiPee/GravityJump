@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 24.4.2015 10:53:02.
      1>Project "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -12,6 +13,22 @@
      1>c:\users\ttv14sjussipj\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(137): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\ttv14sjussipj\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(139): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\ttv14sjussipj\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(143): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+=======
+﻿Build started 24.4.2015 12:38:14.
+     1>Project "C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\ttv14spyryk\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt testMain.cpp
+         testMain.cpp
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(36): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(38): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(63): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(67): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(138): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(140): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ttv14spyryk\desktop\gravityjump\sfml-demo\sfml-demo\testmain.cpp(144): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+>>>>>>> origin/master
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" winmm.lib "sfml-audio-s-d.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.lib" /MACHINE:X86 "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Collision.obj"
          "C:\Users\TTV14SJussiPJ\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\GameObject.obj"
@@ -25,4 +42,8 @@
 
 Build succeeded.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:00.88
+=======
+Time Elapsed 00:00:00.80
+>>>>>>> origin/master

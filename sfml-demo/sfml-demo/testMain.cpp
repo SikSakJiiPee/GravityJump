@@ -26,8 +26,13 @@ int main()
 	backgroundImg.setTexture(backgroundTex);
 	backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
 
+<<<<<<< HEAD
 	Player p1(Player(1, sf::Vector2f(70, 40), playerTex));
 	Player p2(Player(2, sf::Vector2f(140, 80), playerTex));
+=======
+	Player p1(Player(sf::Vector2f(70, 40), playerTex));
+	Player p2(Player(sf::Vector2f(180, 40), playerTex));
+>>>>>>> origin/master
 
 	// Creating views for split screen
 	sf::View view1, view2;
@@ -123,7 +128,7 @@ int main()
 					position.y = view2.getSize().y / 2;
 
 				view1.setCenter(position);
-				view2.setCenter(position2);
+				
 
 				
 				window.draw(p1.playerSprite);
@@ -131,6 +136,36 @@ int main()
 				
 				window.setView(view2);
 				window.draw(backgroundImg);
+<<<<<<< HEAD
+=======
+
+				//Scrolling
+				if (p2.playerSprite.getPosition().x + 10 >= view2.getSize().x / 2)
+				{
+					position2.x = p2.playerSprite.getPosition().x + 10;
+				}
+				else
+				{
+					position.x = view2.getSize().x / 2;
+				}
+
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
+				{
+					position2.y = p2.playerSprite.getPosition().y + 10;
+				}
+				else
+				{
+					position2.y = view2.getSize().y / 2;
+				}
+				//------Scrolling
+
+				if (p2.playerSprite.getPosition().y + 10 >= view2.getSize().y / 2)
+					position2.y = p2.playerSprite.getPosition().y + 10;
+				else
+					position2.y = view2.getSize().y / 2;
+
+				view2.setCenter(position2);
+>>>>>>> origin/master
 				window.draw(p2.playerSprite);
 				window.draw(p1.playerSprite);
 
