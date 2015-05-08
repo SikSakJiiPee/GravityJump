@@ -5,11 +5,10 @@
 
 enum Items
 {
-	speedBoost = 0,
+	speedBoost = 1,
 
-	swapPlaces = 1,
+	setBack = 2,
 
-	teleport = 2,
 
 };
 
@@ -19,8 +18,10 @@ public:
 	Item();
 
 	bool itemUsed = false;
-
+	bool hasItem = false;
+	int activeItem = 0;
 	void randomItem();
+
 
 	~Item();
 };

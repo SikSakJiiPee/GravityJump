@@ -1,12 +1,9 @@
 #include "Player.h"
-#include "Main.h"
-#include "Item.h"
 
 std::vector<std::vector<bool>> mask;
+Item items;
 
-
-
-Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
+Player::Player(sf::Vector2f position, sf::Texture &playerTexture, int playerID)
 {
 	playerImg = playerTexture.copyToImage();
 	
@@ -24,15 +21,23 @@ Player::Player(sf::Vector2f position, sf::Texture &playerTexture)
 	}
 	playerSprite.setPosition(position);
 	playerSprite.setTexture(playerTexture);
+
+	
+	
+
+	
+	ID = playerID;
+	
 }
 
 Player::~Player()
 {
 }
 
-void Player::Update(sf::Texture &playerTexture, Tile &tile)
+void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 {
-	Item items;
+	
+	sf::Time cooldown = clock.getElapsedTime();
 
 	playerImg = playerTexture.copyToImage();
 
@@ -68,50 +73,132 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		tilesP.push_back(bottomRight);
 	}
 
-	//----
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
+
+
+	switch (ID)
 	{
-		playerSprite.move(4, 0);
-		movingRight = true;
-		collidingLeft = false;
+	case 1:
+		//---- PLAYER 1 Controlls
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
+		{
+			playerSprite.move(playerSpeed, 0);
+			movingRight = true;
+			collidingLeft = false;
+		}
+		else
+			movingRight = false;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && collidingLeft == false) // Vasemmalle liikkuminen
+		{
+			playerSprite.move(-playerSpeed, 0);
+			movingLeft = true;
+			collidingRight = false;
+		}
+		else
+			movingLeft = false;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && collidingUp == false) // Ylöspäin liikkuminen
+		{
+			playerSprite.move(0, -playerSpeed);
+			movingUp = true;
+			collidingDown = false;
+
+		}
+		else
+			movingUp = false;
+
+		if (collidingUp == true)
+		{
+			//std::cout << "Colliding up";
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
+		{
+			playerSprite.move(0, playerSpeed);
+			movingDown = true;
+			collidingUp = false;
+
+		}
+		else
+			movingDown = false;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			
+			std::cout << "test";
+			//ITAM HAPPENING
+    			if (items.hasItem == true)
+			{
+				//if (items.activeItem == speedBoost)
+				//{
+				//	playerSpeed = 6;
+				//	std::cout << "BOOOOOST";
+				//	items.itemUsed = true;
+
+				//	
+
+				//	while (cooldown.asSeconds() <= 3.0f)
+				//	{
+				//		std::cout << "Cooldown over";
+				//		
+				//	}
+				//	//std::cout << "Boost over";
+				//}
+			}
+
+			
+		}
+		
+		break;
+		//--- P1 CONTRL END
+	case 2:
+
+		//Player2 Controlls ----
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && collidingRight == false) // Oikealle liikkuminen
+		{
+			playerSprite.move(playerSpeed, 0);
+			movingRight = true;
+			collidingLeft = false;
+		}
+		else
+			movingRight = false;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && collidingLeft == false) // Vasemmalle liikkuminen
+		{
+			playerSprite.move(-playerSpeed, 0);
+			movingLeft = true;
+			collidingRight = false;
+		}
+		else
+			movingLeft = false;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && collidingUp == false) // Ylöspäin liikkuminen
+		{
+			playerSprite.move(0, -playerSpeed);
+			movingUp = true;
+			collidingDown = false;
+
+		}
+		else
+			movingUp = false;
+
+		if (collidingUp == true)
+		{
+			//std::cout << "Colliding up";
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && collidingDown == false) // Alaspäin liikkuminen
+		{
+			playerSprite.move(0, playerSpeed);
+			movingDown = true;
+			collidingUp = false;
+
+		}
+		else
+			movingDown = false;
+		break;
 	}
-	else
-		movingRight = false;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && collidingLeft == false) // Vasemmalle liikkuminen
-	{
-		playerSprite.move(-4, 0);
-		movingLeft = true;
-		collidingRight = false;
-	}
-	else
-		movingLeft = false;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && collidingUp == false) // Ylöspäin liikkuminen
-	{
-		playerSprite.move(0, -4);
-		movingUp = true;
-		collidingDown = false;
-
-	}
-	else
-		movingUp = false;
-
-	if (collidingUp == true)
-	{
-		//std::cout << "Colliding up";
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
-	{
-		playerSprite.move(0, 4);
-		movingDown = true;
-		collidingUp = false;
-
-	}
-	else
-		movingDown = false;
-	//LIIKKUMINEN LOPPU
+	//------- P2 CONTRL END
 
 	if (collidingRight == true)
 	{
@@ -174,9 +261,6 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 							j * 32 + 16;
 							i * 32 + 16;
 
-							
-							
-
 							tile.tilePos.x = j;
 							tile.tilePos.y = i;
 
@@ -221,6 +305,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		{
 			items.randomItem();
 
+			clock.restart();
 
 			tile.colMap[tilesP[i].y][tilesP[i].x] = passable;
 			std::cout << "Itam";

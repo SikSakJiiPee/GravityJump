@@ -1,6 +1,7 @@
 #include "Item.h"
 
-bool hasItem = false;
+
+
 
 Item::Item()
 {
@@ -13,45 +14,44 @@ Item::~Item()
 
 
 void Item::randomItem()
-{
-	
+{	
 	int g;
-
 
 	if (hasItem == true)
 	{
-		std::cout << "Already have ";
+		if (itemUsed == true)
+		{
+			hasItem = false;
+		}
+		else
+		std::cout << "Already have item";
 	}
 	else if (hasItem == false) // Jos ei ole itemiä, randomoidaan itemi
 	{
-		g = rand() % 3;
+		g = rand() % 2;
 		std::cout << "Randoming";
 		switch (g)
 		{
-		case 0:
+		case 1:
 		{
+			std::cout << "Speed boost";
 			hasItem = true;
 			//std::cout << "Item test 0";
 			//speedboost
-			break;
-		}
-		case 1:
-		{
-			hasItem = true;
-			//std::cout << "Item test 1";
+			activeItem = speedBoost;
+			
+			
 			break;
 		}
 		case 2:
 		{
-			hasItem = true;
-			//std::cout << "Item test 2";
+
+			activeItem = setBack;
+			//std::cout << "Item test 1";
+			//Set opponent back to latest checkpoint
 			break;
 		}
-		}
-	
+		
+		}	
 	}
-	
-
-	
-
 }

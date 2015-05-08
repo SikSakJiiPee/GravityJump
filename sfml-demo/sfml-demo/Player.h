@@ -3,19 +3,27 @@
 
 
 #include "Tile.h"
+#include "Main.h"
+#include "Item.h"
 
 class Player
 {
 public:
 	Player();
-	Player(sf::Vector2f position, sf::Texture &playerTexture);
+	Player(sf::Vector2f position, sf::Texture &playerTexture,int playerID);
 	~Player();
 
 	sf::Sprite playerSprite;
 	sf::Image playerImg;
 	std::vector<sf::Vector2i> tilesP;
+	int ID = 0;
 
-	void Update(sf::Texture &playerTexture, Tile &tile);
+	int playerSpeed = 4;
+	int origPlayerSpeed = 4;
+
+	void Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock);
+
+	void useItem();
 
 	bool collisionLeft(Player p);
 	bool collisionTop(Player p);
@@ -37,6 +45,7 @@ public:
 	bool collidingUp = false;
 
 	float bottom, left, right, top;
+	
 
 protected:
 	

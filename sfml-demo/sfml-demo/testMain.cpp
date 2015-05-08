@@ -1,9 +1,9 @@
-
 #include "Player.h"
+
 
 int main()
 {
-	sf::Vector2i screenDimensions(640, 480);
+	sf::Vector2i screenDimensions(1280, 720);
 
 	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "GravityJump 0.03a");
 	window.setFramerateLimit(60);
@@ -12,9 +12,14 @@ int main()
 	tile.loadColMap();
 	tile.loadTileMap();
 
+	sf::Clock clock;
+	sf::Time elapsedTime;
 
 	sf::Texture playerTex;
 	playerTex.loadFromFile("Texture/testi.png");
+
+	sf::Texture player2Tex;
+	player2Tex.loadFromFile("Texture/testi2.png");
 
 	sf::Texture backgroundTex;
 	sf::Sprite backgroundImg;
@@ -23,8 +28,8 @@ int main()
 	backgroundImg.setTexture(backgroundTex);
 	backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
 
-	Player p1(Player(sf::Vector2f(70, 40), playerTex));
-	Player p2(Player(sf::Vector2f(180, 40), playerTex));
+	Player p1(Player(sf::Vector2f(70, 80), playerTex, 1));
+	Player p2(Player(sf::Vector2f(180, 80), player2Tex, 2));
 
 	// Creating views for split screen
 	sf::View view1, view2;
@@ -46,6 +51,7 @@ int main()
 				sf::Event event;
 				while (window.pollEvent(event))
 				{
+					elapsedTime = clock.getElapsedTime();
 					switch (event.type)
 					{
 					case sf::Event::Closed:
@@ -54,6 +60,11 @@ int main()
 					}
 					
 				}
+
+				
+
+				p1.playerPos = p1.playerSprite.getPosition();
+				p2.playerPos = p2.playerSprite.getPosition();
 				//Window scrolling / Split screen ------------------------
 				window.setView(view1);
 				window.draw(backgroundImg);
@@ -106,6 +117,18 @@ int main()
 				window.setView(view2);
 				window.draw(backgroundImg);
 
+				for (int c = 0; c < tile.map.size(); c++)
+				{
+					for (int g = 0; g < tile.map[c].size(); g++)
+					{
+						if (tile.map[c][g].x != -1 && tile.map[c][g].y != -1)
+						{
+							tile.tiles.setPosition(g * 32, c * 32);
+							tile.tiles.setTextureRect(sf::IntRect(tile.map[c][g].x * 32, tile.map[c][g].y * 32, 32, 32));
+							window.draw(tile.tiles);
+						}
+					}
+				}
 				//Scrolling
 				if (p2.playerSprite.getPosition().x + 10 >= view2.getSize().x / 2)
 				{
@@ -135,25 +158,14 @@ int main()
 				window.draw(p2.playerSprite);
 				window.draw(p1.playerSprite);
 
-				for (int c = 0; c < tile.map.size(); c++)
-				{
-					for (int g = 0; g < tile.map[c].size(); g++)
-					{
-						if (tile.map[c][g].x != -1 && tile.map[c][g].y != -1)
-						{
-							tile.tiles.setPosition(g * 32, c * 32);
-							tile.tiles.setTextureRect(sf::IntRect(tile.map[c][g].x * 32, tile.map[c][g].y * 32, 32, 32));
-							window.draw(tile.tiles);
-						}
-					}
-				}
+				
 				
 				//Window scrolling / Split screen ------------------------
 				window.display();
 				window.clear();
 
-				p1.Update(playerTex, tile);
-				p2.Update(playerTex, tile);
+				p1.Update(playerTex, tile, clock);
+				p2.Update(playerTex, tile, clock);
 
 
 #pragma region Liikkuminen
