@@ -23,7 +23,7 @@ Background::~Background()
 
 void Background::Update(sf::RenderWindow &window)
 {
-	if (bgY < 100)
+	if (bgY < 200)
 	{
 		bgY += bgSpeed;
 	}

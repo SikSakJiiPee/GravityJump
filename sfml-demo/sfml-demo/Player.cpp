@@ -134,11 +134,13 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 					{
 						playerSpeed = 6;
 						items.itemUsed = true;
+						items.hasItem = false;
 					}
 					else if (items.activeItem == setBack && onRange == true)
 					{
 						activatedSetBack = true;
 						items.itemUsed = true;
+						items.hasItem = false;
 					}
 				}	
 		}
@@ -196,7 +198,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 
 			std::cout << "test";
 			//ITAM HAPPENING
-			if (items.hasItem == true)
+			if (items.hasItem == true && items.itemUsed == true)
 			{
 				clock.restart();
 
@@ -205,11 +207,13 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 				{
 					playerSpeed = 6;
 					items.itemUsed = true;
+					items.hasItem = false;
 				}
 				else if (items.activeItem == setBack && onRange == true)
 				{
 					activatedSetBack = true;
 					items.itemUsed = true;
+					items.hasItem = false;
 				}
 			}
 		}
@@ -288,8 +292,8 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 				collidingRight = true;
 			}
 			//std::cout << "ITS A WALL ";
+			
 			break;
-
 		}
 		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == checkpoint)
 		{
@@ -304,12 +308,12 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 
 				tile.colMap[tilesP[i].y][tilesP[i].x] = passable;
 				// poistetaan itemi paikalta
-			
+				
 		}
 		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == goalLine)
 		{
 			gameEnd = true;
-
+			
 		}
 		else
 		{
@@ -317,6 +321,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 			collidingDown = false;
 			collidingLeft = false;
 			collidingRight = false;
+			
 		}
 	}
 }
@@ -329,19 +334,19 @@ void Player::loadCheckpoint()
 
 void Player::setCheckpoint(Tile &tile)
 {
-	for (int j = 0; j < tile.colMap.size(); j++) //Etsitään collision mapista osutun tilen x-paikka (J) - Ei varmaan oikea tapa tällä hetkellä
+	for (int x = 0; x < tile.colMap.size(); x++) //Etsitään collision mapista osutun tilen x-paikka (J) - Ei varmaan oikea tapa tällä hetkellä
 	{
-		for (int i = 0; i < tile.colMap[j].size(); i++) //Etsitään collision mapista osutun tilen y-paikka (i) - Ei varmaan oikea tapa tällä hetkellä
+		for (int z = 0; z < tile.colMap[x].size(); z++) //Etsitään collision mapista osutun tilen y-paikka (i) - Ei varmaan oikea tapa tällä hetkellä
 		{
 			// JOS - joku ehto juttu juttelson
-			if (tile.colMap[tilesP[i].y][tilesP[i].x] != -1 && tile.colMap[tilesP[i].y][tilesP[i].x] != -1)
+			if (tile.colMap[tilesP[z].y][tilesP[z].x] != -1 && tile.colMap[tilesP[z].y][tilesP[z].x] != -1)
 			{
 				//kerrotaan collision mapin x-y paikat 32:lla jotta saadaan pikseleinä koordinaatit. Ja tehdään korjaus jotta saadaan tilen keskipiste +16 -16 (x / y) riippuen mistä suunnasta osutaan. 
 				//std::cout << tilesP[i].x;
 
 				//std::cout << tilesP[i].y;//Näillä laitetaan toimimaan !
-				currentCheckpoint.y = tilesP[i].y * 32;
-				currentCheckpoint.x = tilesP[i].x * 32;
+				currentCheckpoint.y = tilesP[z].y * 32;
+				currentCheckpoint.x = tilesP[z].x * 32;
 				//std::cout << i;
 				//Haetaan pelaajan keskipiste - katsotaan etäisyys tilen keskipisteeseen jos etäisyys vähemmän kuin 32pikseliä - siirretään pelaajaa menosuunnan vastaiseen suuntaan (32 - etäisyys) verran.
 			
@@ -378,11 +383,13 @@ void Player::setBackFunct(Player &p1, Player &p2)
 	{
 		p2.loadCheckpoint();
 		p1.activatedSetBack = false;
+		items.itemUsed = true;
 	}
 	else if (p2.activatedSetBack == true && onRange == true)
 	{
 		p1.loadCheckpoint();
 		p2.activatedSetBack = false;
+		items.itemUsed = true;
 	}
 
 

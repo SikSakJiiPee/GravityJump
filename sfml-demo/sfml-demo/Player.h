@@ -31,6 +31,7 @@ public:
 
 	bool gameEnd = false;
 
+
 	sf::Clock clock;
 	void setCheckpoint(Tile &tile);
 	void loadCheckpoint();
@@ -41,6 +42,7 @@ public:
 
 	sf::Vector2f playerPos;
 	sf::Vector2f currentCheckpoint;
+	sf::Vector2f playerOrigin;
 
 	bool collidingWall = false;
 

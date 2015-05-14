@@ -23,10 +23,10 @@ public:
 	bool hasItem = false;
 	int activeItem = 0;
 	void randomItem();
-
-
-
-
+	sf::Sound speedBoostSFX;
+	sf::Sound setBackSFX;
+	sf::SoundBuffer setBackBuf;
+	sf::SoundBuffer speedBoostBuf;
 	~Item();
 };
 

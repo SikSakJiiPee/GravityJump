@@ -3,6 +3,20 @@
 
 Item::Item()
 {
+
+	
+	setBackBuf.loadFromFile("SFX/set_back.wav");
+		
+	
+	setBackSFX.setBuffer(setBackBuf);
+
+	
+	speedBoostBuf.loadFromFile("SFX/speed_boost.wav");
+	
+	
+	speedBoostSFX.setBuffer(speedBoostBuf);
+
+
 }
 
 
@@ -13,6 +27,9 @@ Item::~Item()
 
 void Item::randomItem()
 {	
+
+
+
 	int g;
 
 	if (hasItem == true)
@@ -26,13 +43,14 @@ void Item::randomItem()
 	}
 	else if (hasItem == false) // Jos ei ole itemiä, randomoidaan itemi
 	{
-		g = rand() % 3;
+		g = rand() % 2 + 1;
 		std::cout << "Randoming";
 		switch (g)
 		{
 		case 1:
 		{
-			std::cout << "Speed boost";
+
+			speedBoostSFX.play();
 			hasItem = true;
 			//std::cout << "Item test 0";
 			//speedboost
@@ -43,9 +61,9 @@ void Item::randomItem()
 		}
 		case 2:
 		{
+			setBackSFX.play();
 			hasItem = true;
 			activeItem = setBack;
-			std::cout << "SET BACK!";
 			//Set opponent back to latest checkpoint
 			break;
 		}
