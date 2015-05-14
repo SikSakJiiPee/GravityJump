@@ -1,26 +1,15 @@
-﻿Build started 14.5.2015 19:19:36.
+﻿Build started 14.5.2015 23:11:12.
      1>Project "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Visual Studio\VC\bin\CL.exe /c /I"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Player.cpp
-         Player.cpp
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(11): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(14): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(96): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(105): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(114): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(129): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(172): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(181): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(190): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(205): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(252): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(327): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(329): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(338): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\player.cpp(339): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         D:\Visual Studio\VC\bin\CL.exe /c /I"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /ZI /nologo /W4 /WX- /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\\" /Fd"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Credits.cpp
+         Credits.cpp
+     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\credits.cpp(14): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\credits.cpp(30): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\credits.cpp(36): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\pyry\desktop\gravityjump\sfml-demo\sfml-demo\credits.cpp(22): warning C4100: 'window' : unreferenced formal parameter
        Link:
          D:\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" winmm.lib "sfml-audio-s-d.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Debug\sfml-demo.lib" /MACHINE:X86 "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Background.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\GameObject.obj"
+         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Credits.obj"
          "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Item.obj"
          "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Main.obj"
          "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Debug\Player.obj"
@@ -79,4 +68,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.93
+Time Elapsed 00:00:00.82

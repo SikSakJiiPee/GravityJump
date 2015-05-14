@@ -1,6 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+
 #include "Main.h"
 
 enum Items
@@ -9,6 +10,7 @@ enum Items
 
 	setBack = 2,
 
+	
 
 };
 
@@ -21,6 +23,8 @@ public:
 	bool hasItem = false;
 	int activeItem = 0;
 	void randomItem();
+
+
 
 
 	~Item();

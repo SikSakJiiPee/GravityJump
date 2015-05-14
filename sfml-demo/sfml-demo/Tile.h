@@ -12,6 +12,8 @@ enum TileCollision
 	checkpoint = 2,
 
 	item = 3,
+
+	goalLine = 4,
 };
 
 class Tile

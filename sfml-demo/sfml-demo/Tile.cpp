@@ -22,7 +22,7 @@ void Tile::loadTileMap()
 
 	if (openfile.is_open())
 	{
-		std::cout << "TileMap open";
+		std::cout << "TileMap open" << std::endl;
 		std::string tileLocation;
 		openfile >> tileLocation;
 		tileTexture.loadFromFile(tileLocation);
@@ -73,6 +73,7 @@ void Tile::loadTileMap()
 void Tile::loadColMap()
 {
 	std::ifstream openfile2("Map1col.txt");
+	std::cout << "Collision Map open" << std::endl;
 	tempMap2.clear();
 	colMap.clear();
 

@@ -1,8 +1,6 @@
 #include "Item.h"
 
 
-
-
 Item::Item()
 {
 }
@@ -28,7 +26,7 @@ void Item::randomItem()
 	}
 	else if (hasItem == false) // Jos ei ole itemiä, randomoidaan itemi
 	{
-		g = rand() % 2;
+		g = rand() % 3;
 		std::cout << "Randoming";
 		switch (g)
 		{
@@ -45,9 +43,9 @@ void Item::randomItem()
 		}
 		case 2:
 		{
-
+			hasItem = true;
 			activeItem = setBack;
-			//std::cout << "Item test 1";
+			std::cout << "SET BACK!";
 			//Set opponent back to latest checkpoint
 			break;
 		}
@@ -55,3 +53,4 @@ void Item::randomItem()
 		}	
 	}
 }
+

@@ -6,6 +6,7 @@
 #include "Main.h"
 #include "Item.h"
 #include "Background.h"
+#include "Credits.h"
 
 class Player
 {
@@ -25,9 +26,18 @@ public:
 	void Update(sf::Texture &playerTexture, Tile &tile);
 
 	void useItem();
+	void setBackFunct(Player &p1, Player &p2);
+	bool activatedSetBack = false;
+
+	bool gameEnd = false;
+
 	sf::Clock clock;
 	void setCheckpoint(Tile &tile);
 	void loadCheckpoint();
+	void getPlayerdistance(Player &p1, Player &p2);
+
+	sf::Vector2f playerDistance;
+	bool onRange = false;
 
 	sf::Vector2f playerPos;
 	sf::Vector2f currentCheckpoint;

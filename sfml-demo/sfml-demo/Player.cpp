@@ -22,13 +22,8 @@ Player::Player(sf::Vector2f position, sf::Texture &playerTexture, int playerID)
 	}
 	playerSprite.setPosition(position);
 	playerSprite.setTexture(playerTexture);
-
 	
-	
-
-	
-	ID = playerID;
-	
+	ID = playerID;	
 }
 
 Player::~Player()
@@ -42,13 +37,11 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 
 	cooldown = clock.getElapsedTime();
 
-
-	std::cout << playerSpeed;
+	//std::cout << playerSpeed;
 
 	if (cooldown.asSeconds() >= 3.0f)
 	{
-		playerSpeed = 4;
-		//		
+		playerSpeed = 4;	
 	}
 
 	playerImg = playerTexture.copyToImage();
@@ -119,10 +112,6 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		else
 			movingUp = false;
 
-		if (collidingUp == true)
-		{
-			//std::cout << "Colliding up";
-		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
 		{
@@ -137,29 +126,25 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			
-			std::cout << "test";
-			//ITAM HAPPENING
     			if (items.hasItem == true)
-			{
+				{
 					clock.restart();
 					
-					std::cout << "Used item";
 					if (items.activeItem == speedBoost)
 					{
 						playerSpeed = 6;
-						//	std::cout << "BOOOOOST";
 						items.itemUsed = true;
 					}
-
-				//	
-				std::cout << "Boost over";
-				//}
-			}	
+					else if (items.activeItem == setBack && onRange == true)
+					{
+						activatedSetBack = true;
+						items.itemUsed = true;
+					}
+				}	
 		}
-		
-
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
 		{
+			// Go to last checkpoint
 			loadCheckpoint();
 		}
 		break;
@@ -195,10 +180,6 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		else
 			movingUp = false;
 
-		if (collidingUp == true)
-		{
-			//std::cout << "Colliding up";
-		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && collidingDown == false) // Alaspäin liikkuminen
 		{
@@ -209,6 +190,36 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		}
 		else
 			movingDown = false;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+		{
+
+			std::cout << "test";
+			//ITAM HAPPENING
+			if (items.hasItem == true)
+			{
+				clock.restart();
+
+				std::cout << "Used item";
+				if (items.activeItem == speedBoost)
+				{
+					playerSpeed = 6;
+					items.itemUsed = true;
+				}
+				else if (items.activeItem == setBack && onRange == true)
+				{
+					activatedSetBack = true;
+					items.itemUsed = true;
+				}
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+		{
+			// Go to last checkpoint
+			loadCheckpoint();
+		}
+
 		break;
 	}
 	//------- P2 CONTRL END
@@ -257,14 +268,8 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 			{
 				collidingUp = true;
 
-			
-
-				
 				//std::cout << tile.tilePos.x << std::endl;
 				//std::cout << tile.tilePos.y;
-
-
-
 				//Etsitään mihin tileihin osutaan
 				//Käydään läpi tilet
 				//Tehdään tarvittava korjaus
@@ -288,7 +293,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		}
 		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == checkpoint)
 		{
-			std::cout << "CHECKPOINT!";
+			//Asetetaan pelaajalle checkpoint
 			setCheckpoint(tile);
 
 			break;
@@ -297,14 +302,14 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 		{
 			items.randomItem();
 
+				tile.colMap[tilesP[i].y][tilesP[i].x] = passable;
+				// poistetaan itemi paikalta
 			
+		}
+		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == goalLine)
+		{
+			gameEnd = true;
 
-			tile.colMap[tilesP[i].y][tilesP[i].x] = passable;
-			std::cout << "Itam";
-
-			
-
-			 // poistetaan itemi paikalta.
 		}
 		else
 		{
@@ -345,5 +350,40 @@ void Player::setCheckpoint(Tile &tile)
 			}
 		}
 	}
+
+}
+
+void Player::getPlayerdistance(Player &p1, Player &p2)
+{
+	p1.playerSprite.getPosition();
+	p2.playerSprite.getPosition();
+
+	playerDistance.x = p1.playerSprite.getPosition().x - p2.playerSprite.getPosition().x;
+	playerDistance.y = p1.playerSprite.getPosition().y - p2.playerSprite.getPosition().y;
+
+	if (p1.playerSprite.getPosition().x - p2.playerSprite.getPosition().x <= 80 && p1.playerSprite.getPosition().y - p2.playerSprite.getPosition().y <= 80
+		&& p1.playerSprite.getPosition().x - p2.playerSprite.getPosition().x >= -80 && p1.playerSprite.getPosition().y - p2.playerSprite.getPosition().y >= -80)
+	{
+		onRange = true;
+	}
+	else
+	{
+		onRange = false;
+	}
+}
+
+void Player::setBackFunct(Player &p1, Player &p2)
+{
+	if (p1.activatedSetBack == true && onRange == true)
+	{
+		p2.loadCheckpoint();
+		p1.activatedSetBack = false;
+	}
+	else if (p2.activatedSetBack == true && onRange == true)
+	{
+		p1.loadCheckpoint();
+		p2.activatedSetBack = false;
+	}
+
 
 }

@@ -87,7 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Player.h" />
