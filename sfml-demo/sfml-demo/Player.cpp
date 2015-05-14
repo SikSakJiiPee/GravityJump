@@ -3,6 +3,7 @@
 std::vector<std::vector<bool>> mask;
 Item items;
 
+
 Player::Player(sf::Vector2f position, sf::Texture &playerTexture, int playerID)
 {
 	playerImg = playerTexture.copyToImage();
@@ -34,10 +35,21 @@ Player::~Player()
 {
 }
 
-void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
+void Player::Update(sf::Texture &playerTexture, Tile &tile)
 {
-	
-	sf::Time cooldown = clock.getElapsedTime();
+
+	sf::Time cooldown;
+
+	cooldown = clock.getElapsedTime();
+
+
+	std::cout << playerSpeed;
+
+	if (cooldown.asSeconds() >= 3.0f)
+	{
+		playerSpeed = 4;
+		//		
+	}
 
 	playerImg = playerTexture.copyToImage();
 
@@ -129,26 +141,27 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 			//ITAM HAPPENING
     			if (items.hasItem == true)
 			{
-				//if (items.activeItem == speedBoost)
-				//{
-				//	playerSpeed = 6;
-				//	std::cout << "BOOOOOST";
-				//	items.itemUsed = true;
+					clock.restart();
+					
+					std::cout << "Used item";
+					if (items.activeItem == speedBoost)
+					{
+						playerSpeed = 6;
+						//	std::cout << "BOOOOOST";
+						items.itemUsed = true;
+					}
 
 				//	
-
-				//	while (cooldown.asSeconds() <= 3.0f)
-				//	{
-				//		std::cout << "Cooldown over";
-				//		
-				//	}
-				//	//std::cout << "Boost over";
+				std::cout << "Boost over";
 				//}
-			}
-
-			
+			}	
 		}
 		
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
+		{
+			loadCheckpoint();
+		}
 		break;
 		//--- P1 CONTRL END
 	case 2:
@@ -204,7 +217,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 	{
 		//playerSprite.move(-4, 0);
 
-		playerSprite.setPosition(playerSprite.getPosition().x - 4, playerSprite.getPosition().y);
+		playerSprite.setPosition(playerSprite.getPosition().x - 8, playerSprite.getPosition().y);
 		collidingLeft = false;
 		//collidingWall = false;
 	}
@@ -213,7 +226,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 	if (collidingLeft == true)
 	{
 		//playerSprite.move(4, 0);
-		playerSprite.setPosition(playerSprite.getPosition().x + 4, playerSprite.getPosition().y);
+		playerSprite.setPosition(playerSprite.getPosition().x + 6, playerSprite.getPosition().y);
 		collidingRight = false;
 		//collidingWall = false;
 	}
@@ -222,7 +235,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 	if (collidingUp == true)
 	{
 		//playerSprite.move(0, 4);
-		playerSprite.setPosition(playerSprite.getPosition().x, playerSprite.getPosition().y + 4);
+		playerSprite.setPosition(playerSprite.getPosition().x, playerSprite.getPosition().y + 6);
 		collidingDown = false;
 	}
 
@@ -230,7 +243,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 	if (collidingDown == true)
 	{
 		//playerSprite.move(0, -4);
-		playerSprite.setPosition(playerSprite.getPosition().x, playerSprite.getPosition().y - 4);
+		playerSprite.setPosition(playerSprite.getPosition().x, playerSprite.getPosition().y - 6);
 		collidingUp = false;
 	}
 
@@ -244,30 +257,7 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 			{
 				collidingUp = true;
 
-				for (int j = 0; j < tile.colMap.size(); j++) //Etsitään collision mapista osutun tilen x-paikka (J) - Ei varmaan oikea tapa tällä hetkellä
-				{
-					for (int i = 0; i < tile.colMap[j].size(); i++) //Etsitään collision mapista osutun tilen y-paikka (i) - Ei varmaan oikea tapa tällä hetkellä
-					{
-						// JOS - joku ehto juttu juttelson
-						if (tile.colMap[tilesP[i].y][tilesP[i].x] != -1 && tile.colMap[tilesP[i].y][tilesP[i].x] != -1)
-						{
-							//kerrotaan collision mapin x-y paikat 32:lla jotta saadaan pikseleinä koordinaatit. Ja tehdään korjaus jotta saadaan tilen keskipiste +16 -16 (x / y) riippuen mistä suunnasta osutaan. 
-							std::cout << tilesP[i].x;
-
-							std::cout << tilesP[i].y;//Näillä laitetaan toimimaan !
-
-							//std::cout << i;
-							//Haetaan pelaajan keskipiste - katsotaan etäisyys tilen keskipisteeseen jos etäisyys vähemmän kuin 32pikseliä - siirretään pelaajaa menosuunnan vastaiseen suuntaan (32 - etäisyys) verran.
-							j * 32 + 16;
-							i * 32 + 16;
-
-							tile.tilePos.x = j;
-							tile.tilePos.y = i;
-
-							break;
-						}
-					}
-				}
+			
 
 				
 				//std::cout << tile.tilePos.x << std::endl;
@@ -296,16 +286,18 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 			break;
 
 		}
-		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == trap)
+		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == checkpoint)
 		{
-			std::cout << "ITS A TARP!";
+			std::cout << "CHECKPOINT!";
+			setCheckpoint(tile);
+
 			break;
 		}
 		else if (tile.colMap[tilesP[i].y][tilesP[i].x] == item)
 		{
 			items.randomItem();
 
-			clock.restart();
+			
 
 			tile.colMap[tilesP[i].y][tilesP[i].x] = passable;
 			std::cout << "Itam";
@@ -325,48 +317,33 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock)
 }
 
 
+void Player::loadCheckpoint()
+{
+	playerSprite.setPosition(currentCheckpoint.x, currentCheckpoint.y);
+}
 
-bool Player::collisionLeft(Player p)
+void Player::setCheckpoint(Tile &tile)
 {
-	if (right < p.left || left > p.right || top > p.bottom || bottom < p.top)
+	for (int j = 0; j < tile.colMap.size(); j++) //Etsitään collision mapista osutun tilen x-paikka (J) - Ei varmaan oikea tapa tällä hetkellä
 	{
-		return false;
+		for (int i = 0; i < tile.colMap[j].size(); i++) //Etsitään collision mapista osutun tilen y-paikka (i) - Ei varmaan oikea tapa tällä hetkellä
+		{
+			// JOS - joku ehto juttu juttelson
+			if (tile.colMap[tilesP[i].y][tilesP[i].x] != -1 && tile.colMap[tilesP[i].y][tilesP[i].x] != -1)
+			{
+				//kerrotaan collision mapin x-y paikat 32:lla jotta saadaan pikseleinä koordinaatit. Ja tehdään korjaus jotta saadaan tilen keskipiste +16 -16 (x / y) riippuen mistä suunnasta osutaan. 
+				//std::cout << tilesP[i].x;
+
+				//std::cout << tilesP[i].y;//Näillä laitetaan toimimaan !
+				currentCheckpoint.y = tilesP[i].y * 32;
+				currentCheckpoint.x = tilesP[i].x * 32;
+				//std::cout << i;
+				//Haetaan pelaajan keskipiste - katsotaan etäisyys tilen keskipisteeseen jos etäisyys vähemmän kuin 32pikseliä - siirretään pelaajaa menosuunnan vastaiseen suuntaan (32 - etäisyys) verran.
+			
+
+				break;
+			}
+		}
 	}
-	else // if (left < p.right && right > p.left + 20)
-	{
-		return true;
-	}
-}
-bool Player::collisionRight(Player p)
-{
-	if (right < p.left  || left > p.right || top > p.bottom || bottom < p.top)
-	{
-		return false;
-	}
-	else if (right > p.left && left < p.right - 16)
-	{
-		return true;
-	}
-}
-bool Player::collisionTop(Player p)
-{
-	if (right < p.left || left > p.right || top > p.bottom || bottom < p.top)
-	{
-		return false;
-	}
-	else if (top < p.bottom && bottom > p.top + 16)
-	{
-		return true;
-	}
-}
-bool Player::collisionBottom(Player p)
-{
-	if (right < p.left || left > p.right || top > p.bottom || bottom < p.top)
-	{
-		return false;
-	}
-	else if (bottom > p.top && top < p.bottom - 16)
-	{
-		return true;
-	}
+
 }

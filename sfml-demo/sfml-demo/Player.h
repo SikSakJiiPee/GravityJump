@@ -5,6 +5,7 @@
 #include "Tile.h"
 #include "Main.h"
 #include "Item.h"
+#include "Background.h"
 
 class Player
 {
@@ -21,16 +22,15 @@ public:
 	int playerSpeed = 4;
 	int origPlayerSpeed = 4;
 
-	void Update(sf::Texture &playerTexture, Tile &tile, sf::Clock clock);
+	void Update(sf::Texture &playerTexture, Tile &tile);
 
 	void useItem();
-
-	bool collisionLeft(Player p);
-	bool collisionTop(Player p);
-	bool collisionBottom(Player p);
-	bool collisionRight(Player p);
+	sf::Clock clock;
+	void setCheckpoint(Tile &tile);
+	void loadCheckpoint();
 
 	sf::Vector2f playerPos;
+	sf::Vector2f currentCheckpoint;
 
 	bool collidingWall = false;
 

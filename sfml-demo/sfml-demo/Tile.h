@@ -9,7 +9,7 @@ enum TileCollision
 
 	unpassable = 1,
 
-	trap = 2,
+	checkpoint = 2,
 
 	item = 3,
 };

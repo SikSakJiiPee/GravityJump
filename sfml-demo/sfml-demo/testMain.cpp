@@ -5,15 +5,13 @@ int main()
 {
 	sf::Vector2i screenDimensions(1280, 720);
 
-	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "GravityJump 0.03a");
+	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "GravityJump 0.05");
 	window.setFramerateLimit(60);
 
 	Tile tile;
 	tile.loadColMap();
 	tile.loadTileMap();
 
-	sf::Clock clock;
-	sf::Time elapsedTime;
 
 	sf::Texture playerTex;
 	playerTex.loadFromFile("Texture/testi.png");
@@ -21,15 +19,12 @@ int main()
 	sf::Texture player2Tex;
 	player2Tex.loadFromFile("Texture/testi2.png");
 
-	sf::Texture backgroundTex;
-	sf::Sprite backgroundImg;
-	backgroundTex.loadFromFile("Texture/backround1.jpg");
-
-	backgroundImg.setTexture(backgroundTex);
-	backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
+	Background background;
+	
+	//backgroundImg.setScale(1.0f, (float)screenDimensions.y / backgroundTex.getSize().y);
 
 	Player p1(Player(sf::Vector2f(70, 80), playerTex, 1));
-	Player p2(Player(sf::Vector2f(180, 80), player2Tex, 2));
+	Player p2(Player(sf::Vector2f(70, 120), player2Tex, 2));
 
 	// Creating views for split screen
 	sf::View view1, view2;
@@ -51,7 +46,6 @@ int main()
 				sf::Event event;
 				while (window.pollEvent(event))
 				{
-					elapsedTime = clock.getElapsedTime();
 					switch (event.type)
 					{
 					case sf::Event::Closed:
@@ -63,11 +57,14 @@ int main()
 
 				
 
+				background.Update(window);
+				
+
 				p1.playerPos = p1.playerSprite.getPosition();
 				p2.playerPos = p2.playerSprite.getPosition();
 				//Window scrolling / Split screen ------------------------
 				window.setView(view1);
-				window.draw(backgroundImg);
+				background.Render(window);
 
 				for (int c = 0; c < tile.map.size(); c++)
 				{
@@ -115,7 +112,7 @@ int main()
 				window.draw(p2.playerSprite);
 				
 				window.setView(view2);
-				window.draw(backgroundImg);
+				background.Render(window);
 
 				for (int c = 0; c < tile.map.size(); c++)
 				{
@@ -164,8 +161,8 @@ int main()
 				window.display();
 				window.clear();
 
-				p1.Update(playerTex, tile, clock);
-				p2.Update(playerTex, tile, clock);
+				p1.Update(playerTex, tile);
+				p2.Update(playerTex, tile);
 
 
 #pragma region Liikkuminen
