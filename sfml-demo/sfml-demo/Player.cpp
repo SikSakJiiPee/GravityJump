@@ -84,52 +84,57 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 	{
 	case 1:
 		//---- PLAYER 1 Controlls
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
+		//P1 Controller
+		if (sf::Joystick::isConnected(0))
 		{
-			playerSprite.move(playerSpeed, 0);
-			movingRight = true;
-			collidingLeft = false;
-		}
-		else
-			movingRight = false;
+			float axisX = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+			if ((axisX > 50) && collidingRight == false) // Oikealle liikkuminen
+			{
+				playerSprite.move(playerSpeed, 0);
+				movingRight = true;
+				collidingLeft = false;
+			}
+			else
+				movingRight = false;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && collidingLeft == false) // Vasemmalle liikkuminen
-		{
-			playerSprite.move(-playerSpeed, 0);
-			movingLeft = true;
-			collidingRight = false;
-		}
-		else
-			movingLeft = false;
+			if ((axisX < -50) && collidingLeft == false) // Vasemmalle liikkuminen
+			{
+				playerSprite.move(-playerSpeed, 0);
+				movingLeft = true;
+				collidingRight = false;
+			}
+			else
+				movingLeft = false;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && collidingUp == false) // Ylöspäin liikkuminen
-		{
-			playerSprite.move(0, -playerSpeed);
-			movingUp = true;
-			collidingDown = false;
+			float axisY = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+			if ((axisY < -50) && collidingUp == false) // Ylöspäin liikkuminen
+			{
+				playerSprite.move(0, -playerSpeed);
+				movingUp = true;
+				collidingDown = false;
 
-		}
-		else
-			movingUp = false;
+			}
+			else
+				movingUp = false;
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
-		{
-			playerSprite.move(0, playerSpeed);
-			movingDown = true;
-			collidingUp = false;
+			if ((axisY > 50) && collidingDown == false) // Alaspäin liikkuminen
+			{
+				playerSprite.move(0, playerSpeed);
+				movingDown = true;
+				collidingUp = false;
 
-		}
-		else
-			movingDown = false;
+			}
+			else
+				movingDown = false;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		{
-			
-    			if (items.hasItem == true)
+			if (sf::Joystick::isButtonPressed(0, 2))
+			{
+
+				if (items.hasItem == true)
 				{
 					clock.restart();
-					
+
 					if (items.activeItem == speedBoost)
 					{
 						playerSpeed = 6;
@@ -142,87 +147,237 @@ void Player::Update(sf::Texture &playerTexture, Tile &tile)
 						items.itemUsed = true;
 						items.hasItem = false;
 					}
-				}	
+				}
+			}
+			if (sf::Joystick::isButtonPressed(0, 1))
+			{
+				// Go to last checkpoint
+				loadCheckpoint();
+			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
+		//P1 Controller END
+		else
 		{
-			// Go to last checkpoint
-			loadCheckpoint();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && collidingRight == false) // Oikealle liikkuminen
+			{
+				playerSprite.move(playerSpeed, 0);
+				movingRight = true;
+				collidingLeft = false;
+			}
+			else
+				movingRight = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && collidingLeft == false) // Vasemmalle liikkuminen
+			{
+				playerSprite.move(-playerSpeed, 0);
+				movingLeft = true;
+				collidingRight = false;
+			}
+			else
+				movingLeft = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && collidingUp == false) // Ylöspäin liikkuminen
+			{
+				playerSprite.move(0, -playerSpeed);
+				movingUp = true;
+				collidingDown = false;
+
+			}
+			else
+				movingUp = false;
+
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && collidingDown == false) // Alaspäin liikkuminen
+			{
+				playerSprite.move(0, playerSpeed);
+				movingDown = true;
+				collidingUp = false;
+
+			}
+			else
+				movingDown = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			{
+
+				if (items.hasItem == true)
+				{
+					clock.restart();
+
+					if (items.activeItem == speedBoost)
+					{
+						playerSpeed = 6;
+						items.itemUsed = true;
+						items.hasItem = false;
+					}
+					else if (items.activeItem == setBack && onRange == true)
+					{
+						activatedSetBack = true;
+						items.itemUsed = true;
+						items.hasItem = false;
+					}
+				}
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
+			{
+				// Go to last checkpoint
+				loadCheckpoint();
+			}
 		}
+		
+
+		
+		
 		break;
 		//--- P1 CONTRL END
 	case 2:
 
 		//Player2 Controlls ----
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && collidingRight == false) // Oikealle liikkuminen
+		//P1 Controller
+		if (sf::Joystick::isConnected(1))
 		{
-			playerSprite.move(playerSpeed, 0);
-			movingRight = true;
-			collidingLeft = false;
-		}
-		else
-			movingRight = false;
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && collidingLeft == false) // Vasemmalle liikkuminen
-		{
-			playerSprite.move(-playerSpeed, 0);
-			movingLeft = true;
-			collidingRight = false;
-		}
-		else
-			movingLeft = false;
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && collidingUp == false) // Ylöspäin liikkuminen
-		{
-			playerSprite.move(0, -playerSpeed);
-			movingUp = true;
-			collidingDown = false;
-
-		}
-		else
-			movingUp = false;
-
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && collidingDown == false) // Alaspäin liikkuminen
-		{
-			playerSprite.move(0, playerSpeed);
-			movingDown = true;
-			collidingUp = false;
-
-		}
-		else
-			movingDown = false;
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
-		{
-
-			std::cout << "test";
-			//ITAM HAPPENING
-			if (items.hasItem == true && items.itemUsed == true)
+			float axisX = sf::Joystick::getAxisPosition(1, sf::Joystick::X);
+			if ((axisX > 50) && collidingRight == false) // Oikealle liikkuminen
 			{
-				clock.restart();
+				playerSprite.move(playerSpeed, 0);
+				movingRight = true;
+				collidingLeft = false;
+			}
+			else
+				movingRight = false;
 
-				std::cout << "Used item";
-				if (items.activeItem == speedBoost)
+			if ((axisX < -50) && collidingLeft == false) // Vasemmalle liikkuminen
+			{
+				playerSprite.move(-playerSpeed, 0);
+				movingLeft = true;
+				collidingRight = false;
+			}
+			else
+				movingLeft = false;
+
+			float axisY = sf::Joystick::getAxisPosition(1, sf::Joystick::Y);
+			if ((axisY < -50) && collidingUp == false) // Ylöspäin liikkuminen
+			{
+				playerSprite.move(0, -playerSpeed);
+				movingUp = true;
+				collidingDown = false;
+
+			}
+			else
+				movingUp = false;
+
+
+			if ((axisY > 50) && collidingDown == false) // Alaspäin liikkuminen
+			{
+				playerSprite.move(0, playerSpeed);
+				movingDown = true;
+				collidingUp = false;
+
+			}
+			else
+				movingDown = false;
+
+			if (sf::Joystick::isButtonPressed(1, 2))
+			{
+
+				if (items.hasItem == true)
 				{
-					playerSpeed = 6;
-					items.itemUsed = true;
-					items.hasItem = false;
+					clock.restart();
+
+					if (items.activeItem == speedBoost)
+					{
+						playerSpeed = 6;
+						items.itemUsed = true;
+						items.hasItem = false;
+					}
+					else if (items.activeItem == setBack && onRange == true)
+					{
+						activatedSetBack = true;
+						items.itemUsed = true;
+						items.hasItem = false;
+					}
 				}
-				else if (items.activeItem == setBack && onRange == true)
-				{
-					activatedSetBack = true;
-					items.itemUsed = true;
-					items.hasItem = false;
-				}
+			}
+			if (sf::Joystick::isButtonPressed(1, 1))
+			{
+				// Go to last checkpoint
+				loadCheckpoint();
 			}
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+		else
 		{
-			// Go to last checkpoint
-			loadCheckpoint();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && collidingRight == false) // Oikealle liikkuminen
+			{
+				playerSprite.move(playerSpeed, 0);
+				movingRight = true;
+				collidingLeft = false;
+			}
+			else
+				movingRight = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && collidingLeft == false) // Vasemmalle liikkuminen
+			{
+				playerSprite.move(-playerSpeed, 0);
+				movingLeft = true;
+				collidingRight = false;
+			}
+			else
+				movingLeft = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && collidingUp == false) // Ylöspäin liikkuminen
+			{
+				playerSprite.move(0, -playerSpeed);
+				movingUp = true;
+				collidingDown = false;
+
+			}
+			else
+				movingUp = false;
+
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && collidingDown == false) // Alaspäin liikkuminen
+			{
+				playerSprite.move(0, playerSpeed);
+				movingDown = true;
+				collidingUp = false;
+
+			}
+			else
+				movingDown = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+			{
+
+				std::cout << "test";
+				//ITAM HAPPENING
+				if (items.hasItem == true && items.itemUsed == true)
+				{
+					clock.restart();
+
+					std::cout << "Used item";
+					if (items.activeItem == speedBoost)
+					{
+						playerSpeed = 6;
+						items.itemUsed = true;
+						items.hasItem = false;
+					}
+					else if (items.activeItem == setBack && onRange == true)
+					{
+						activatedSetBack = true;
+						items.itemUsed = true;
+						items.hasItem = false;
+					}
+				}
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+			{
+				// Go to last checkpoint
+				loadCheckpoint();
+			}
 		}
+		
 
 		break;
 	}

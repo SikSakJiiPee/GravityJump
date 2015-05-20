@@ -1,19 +1,33 @@
-﻿Build started 21.5.2015 0:03:15.
-     1>Project "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         D:\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Release\sfml-demo.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s.lib" "sfml-window-s.lib" "sfml-system-s.lib" winmm.lib "sfml-audio-s.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Release\sfml-demo.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Release\sfml-demo.lib" /MACHINE:X86 /SAFESEH "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Background.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Credits.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Item.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Main.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Menu.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Player.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\testMain.obj"
-         "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Tile.obj"
+﻿Build started 21.5.2015 0:43:35.
+     1>Project "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\include\\" /I"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\..\SFML-2.2\include" /Zi /nologo /W4 /WX- /O2 /Oi /Oy- /GL /D SFML_STATIC /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\\" /Fd"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt testMain.cpp
+         testMain.cpp
+     1>testMain.cpp(125): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>testMain.cpp(128): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>testMain.cpp(130): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>testMain.cpp(162): warning C4145: '||' : relational expression as switch expression; possible confusion with '|'
+     1>testMain.cpp(176): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>testMain.cpp(208): warning C4018: '<' : signed/unsigned mismatch
+     1>testMain.cpp(210): warning C4018: '<' : signed/unsigned mismatch
+     1>testMain.cpp(214): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>testMain.cpp(256): warning C4018: '<' : signed/unsigned mismatch
+     1>testMain.cpp(258): warning C4018: '<' : signed/unsigned mismatch
+     1>testMain.cpp(262): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\Release\sfml-demo.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\..\SFML-2.2\lib\\" freetype.lib glew.lib jpeg.lib opengl32.lib "sfml-graphics-s.lib" "sfml-window-s.lib" "sfml-system-s.lib" winmm.lib "sfml-audio-s.lib" sndfile.lib openal32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\Release\sfml-demo.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\Release\sfml-demo.lib" /MACHINE:X86 /SAFESEH "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Background.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Credits.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Item.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Main.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Menu.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Player.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\testMain.obj"
+         "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\obj\Release\Tile.obj"
          Generating code
          Finished generating code
-         sfml-demo.vcxproj -> C:\Users\Pyry\Desktop\GravityJump\sfml-demo\Release\sfml-demo.exe
-     1>Done Building Project "C:\Users\Pyry\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" (Build target(s)).
+         sfml-demo.vcxproj -> C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\Release\sfml-demo.exe
+     1>Done Building Project "C:\Users\Jussi-Pekka\Desktop\GravityJump\sfml-demo\sfml-demo\sfml-demo.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.38
+Time Elapsed 00:00:06.67
